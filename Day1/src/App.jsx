@@ -1,11 +1,9 @@
-function Name(){
-  return(
-    <h1>MOHSIN ALI SHAKIR</h1>
-  )
-}
+import Product from "./Product";
+import ProductTotal from "./ProductTotal";
+
 export default function App(){
   return (
-    <Name/>
+    <ProductTotal/>
     
   )
 }

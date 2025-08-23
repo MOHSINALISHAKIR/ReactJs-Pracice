@@ -58,7 +58,7 @@ const Todo = () => {
               >
                 <p className="w-2 h-2 rounded-2xl bg-green-500"></p>
 
-                <li className="p-1">{todos.task}</li>
+                <li className={`${todos.isDone ? 'line-through':''}`}>{todos.task}</li>
                 <button
                   onClick={() => deleteTask(todos.id)}
                   className="bg-black text-white px-1 py-1 rounded-3xl mb-2"

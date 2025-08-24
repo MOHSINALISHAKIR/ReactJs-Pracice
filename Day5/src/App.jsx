@@ -1,10 +1,10 @@
 import React from 'react'
-import Form from './Form'
+import HandlingForm from './HandlingForm'
 
 const App = () => {
   return (
     <div>
-      <Form/>
+      <HandlingForm/>
     </div>
   )
 }

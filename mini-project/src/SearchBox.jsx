@@ -3,7 +3,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 
-const SearchBox = () => {
+
+const SearchBox = ({updateInfo}) => {
   let [city, setCity] = useState("");
   let [country, setCountry] = useState("");
   const limit = 1;
@@ -15,6 +16,7 @@ const SearchBox = () => {
     let jsonResponse = await response.json();
     console.log(jsonResponse);
     let result = {
+        city:city,
         temp:jsonResponse.main.temp,
         tempMin:jsonResponse.main.temp_min,
         tempMax:jsonResponse.main.temp_max,
@@ -22,7 +24,8 @@ const SearchBox = () => {
         feelsLike:jsonResponse.main.feels_like,
         weather:jsonResponse.weather[0].description
     }
-    console.log(result) 
+    // console.log(result) 
+    return result;
     
   };
   let changeCity = (event) => {
@@ -31,15 +34,17 @@ const SearchBox = () => {
   let changeCountry = (event) => {
     setCountry(event.target.value);
   };
-  let onSubmit = (event) => {
+  let onSubmit = async (event) => {
     event.preventDefault();
     setCity("");
     setCountry("");
-    getWeather();
+    let info = await getWeather();
+    updateInfo(info); 
   };
   return (
+    <>
     <div className="flex items-center justify-center flex-col gap-2">
-      <h3>Search Box </h3>
+      <h3 className="text-[20px] font-bold">Search Box </h3>
       <form
         className="flex flex-col items-center w-[400px] gap-4"
         onSubmit={onSubmit}
@@ -69,6 +74,10 @@ const SearchBox = () => {
         </Button>
       </form>
     </div>
+        
+
+    </>
+  
   );
 };
 
